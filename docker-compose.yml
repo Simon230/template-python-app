@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+   db:
+      image: postgres:15.3-alpine3.18
+      container_name: db-app
+      environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
+      ports:
+         - "5432:5432"
+      volumes:
+         - volume-db-app:/var/lib/postgresql/data
+   python:
+      build:
+         context: docker-python-app
+         dockerfile: Dockerfile
+      container_name: python-app
+      working_dir: /app
+      volumes:
+         - type: bind
+           source: /home/simon/projects/docker/docker-python-app/lib
+           target: /app/lib
+      command: ["python", "main.py"] 
+volumes:
+        volume-db-app:
+           external: false
+        

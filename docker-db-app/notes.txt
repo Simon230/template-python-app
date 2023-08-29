@@ -1,0 +1,5 @@
+psql -d postgres -U postgres
+
+CREATE TABLE users (id serial PRIMARY KEY, first_name VARCHAR (50) NOT NULL, last_name VARCHAR(50) NOT NULL);
+INSERT INTO users (first_name, last_name) VALUES ('Ron', 'Wisley');
+INSERT INTO users (first_name, last_name) VALUES ('Harry', 'Potter');
